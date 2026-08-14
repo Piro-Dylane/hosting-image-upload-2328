@@ -7,3 +7,10 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+require "open-uri"
+
+file = URI.parse("https://m.media-amazon.com/images/I/61uzXZdrBLL._AC_UF894,1000_QL80_.jpg").open
+article = Article.new(title: "NES", body: "A great console")
+article.photo.attach(io: file, filename: "nes.png", content_type: "image/jpg")
+article.save
